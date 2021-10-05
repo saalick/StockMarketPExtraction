@@ -9,7 +9,22 @@ def oil():
   soup = BeautifulSoup(r.content, 'html.parser')
   price = soup.find("span", class_="Trsdu(0.3s) Fw(b) Fz(36px) Mb(-4px) D(ib)").text
   shortname = soup.find("h1",class_="D(ib) Fz(18px)").text
-  #lastprice = soup.find("span",="64").text
+  if 'Gold' in shortname:
+      shortname = "Gold in USD"
+  elif 'Oil' in shortname:
+      shortname = "Brent Cruide Oil in USD"
+  elif 'Dow' in shortname:
+      shortname = "Dow Jones in USD"
+  elif 'Russell' in shortname:
+      shortname = "Russell 2000 in USD"
+  elif 'NASDAQ' in shortname:
+      shortname= "Nasdaq in USD"
+  elif 'Nikkei' in shortname:
+      shortname = "Nikkei in JPY"
+  elif 'DAX' in shortname:
+      shortname = "DAX in EUR"
+  elif 'Bitcoin' in shortname:
+      shortname = "Bitcoin in USD"
   try:
    diff = soup.find("span",class_="Trsdu(0.3s) Fw(500) Pstart(10px) Fz(24px) C($negativeColor)").text
   except:
@@ -17,12 +32,11 @@ def oil():
   if diff[0]=="-":
     value = shortname + " || current @"+price+" || \U0001F534 dropped: " + diff
     print(value)
-    send='https://api.telegram.org/bot' + "2019412223:AAHQls_geeAZPJoGIRxaIwxmpqhbVtCBCGU" + '/sendMessage?chat_id=' + '@iamgrwp' + '&parse_mode=Markdown&text=' + value
+    send='https://api.telegram.org/bot' + "2019412223:AAHQls_geeAZPJoGIRxaIwxmpqhbVtCBCGU" + '/sendMessage?chat_id=' + '-1001528245619' + '&parse_mode=Markdown&text=' + value
     requests.get(send)
   elif diff[0]=="+":
     value = shortname + " || current @"+price+" || \U0001F7E2 surged: " + diff
-    print(value)
-    send='https://api.telegram.org/bot' + "2019412223:AAHQls_geeAZPJoGIRxaIwxmpqhbVtCBCGU" + '/sendMessage?chat_id=' + '@iamgrwp' + '&parse_mode=Markdown&text=' + value
+    send='https://api.telegram.org/bot' + "2019412223:AAHQls_geeAZPJoGIRxaIwxmpqhbVtCBCGU" + '/sendMessage?chat_id=' + '-1001528245619' + '&parse_mode=Markdown&text=' + value
     requests.get(send)
 #______________________________________________________________________________________________________________________#
 def putcall():
@@ -32,8 +46,8 @@ def putcall():
  paras = soup.find("table", class_="data-table")
  newparas = paras.find_all("td")
  value = newparas[-1]
- value = "Current PUT/CALL Ratio is "+value.text
- send='https://api.telegram.org/bot' + "2019412223:AAHQls_geeAZPJoGIRxaIwxmpqhbVtCBCGU" + '/sendMessage?chat_id=' + '@iamgrwp' + '&parse_mode=Markdown&text=' + value
+ value = "Aktuelles PUT/CALL Ratio ist "+value.text
+ send='https://api.telegram.org/bot' + "2019412223:AAHQls_geeAZPJoGIRxaIwxmpqhbVtCBCGU" + '/sendMessage?chat_id=' + '-1001528245619' + '&parse_mode=Markdown&text=' + value
  requests.get(send)
 #_______________________________________________________________________________________________________________________#
 def feargreed():
@@ -52,12 +66,19 @@ def vixindex():
  paras = soup.find("h2", class_="intraday__price")
  paras = paras.text
  paras = paras.strip()
- value = "The VIX Index right now is "+paras
- send='https://api.telegram.org/bot' + "2019412223:AAHQls_geeAZPJoGIRxaIwxmpqhbVtCBCGU" + '/sendMessage?chat_id=' + '@iamgrwp' + '&parse_mode=Markdown&text=' + value
+ value = "Aktueller VIX Index steht bei "+paras
+ send='https://api.telegram.org/bot' + "2019412223:AAHQls_geeAZPJoGIRxaIwxmpqhbVtCBCGU" + '/sendMessage?chat_id=' + '-1001528245619' + '&parse_mode=Markdown&text=' + value
  requests.get(send)
 #______________________________________________________________________________________________________________________#
 while(True):
  putcall()
  vixindex()
  oil()
- time.sleep(86000)
+ #here ou can customize the time
+ time.sleep(18600)
+ putcall()
+ vixindex()
+ oil()
+ #here you can customixe it again
+ time.sleep(64800)
+
