@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import emoji
 import time
 def oil():
- urls = ["https://finance.yahoo.com/quote/GC%3DF?p=GC%3DF","https://finance.yahoo.com/quote/%5EGDAXI?p=%5EGDAXI","https://finance.yahoo.com/quote/BTC-USD?p=BTC-USD&.tsrc=fin-srch","https://finance.yahoo.com/quote/CL=F?p=CL=F&.tsrc=fin-srch","https://finance.yahoo.com/quote/%5EDJI?p=^DJI&.tsrc=fin-srch","https://finance.yahoo.com/quote/%5ERUT?p=^RUT&.tsrc=fin-srch","https://finance.yahoo.com/quote/%5EIXIC?p=^IXIC&.tsrc=fin-srch","https://finance.yahoo.com/quote/%5EN225?p=^N225&.tsrc=fin-srch"]
+ urls = ["https://finance.yahoo.com/quote/GC%3DF?p=GC%3DF","https://finance.yahoo.com/quote/%5EGDAXI?p=%5EGDAXI","https://finance.yahoo.com/quote/BTC-USD?p=BTC-USD&.tsrc=fin-srch","https://finance.yahoo.com/quote/CL=F?p=CL=F&.tsrc=fin-srch","https://finance.yahoo.com/quote/%5EDJI?p=^DJI&.tsrc=fin-srch","https://finance.yahoo.com/quote/%5ERUT?p=^RUT&.tsrc=fin-srch","https://finance.yahoo.com/quote/%5EIXIC?p=^IXIC&.tsrc=fin-srch","https://finance.yahoo.com/quote/%5EN225?p=^N225&.tsrc=fin-srch","https://finance.yahoo.com/quote/%5EHSI?p=^HSI&.tsrc=fin-srch"]
  for url in urls:
   r = requests.get(url)
   soup = BeautifulSoup(r.content, 'html.parser')
@@ -25,6 +25,8 @@ def oil():
       shortname = "DAX in EUR"
   elif 'Bitcoin' in shortname:
       shortname = "Bitcoin in USD"
+  elif 'HANG' in shortname:
+     shortname = "Hang Seng in HKD"
   try:
    diff = soup.find("span",class_="Trsdu(0.3s) Fw(500) Pstart(10px) Fz(24px) C($negativeColor)").text
   except:
