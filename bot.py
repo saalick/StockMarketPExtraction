@@ -73,8 +73,8 @@ def vixindex():
  requests.get(send)
 #______________________________________________________________________________________________________________________#
 while(True):
- #time.sleep(600)
- time.sleep(59400)
+ time.sleep(180)
+ time.sleep(50400)
  putcall()
  vixindex()
  oil()
@@ -84,5 +84,5 @@ while(True):
  vixindex()
  oil()
  #here you can customixe it again
- time.sleep(32400)
+ time.sleep(10800)
 
