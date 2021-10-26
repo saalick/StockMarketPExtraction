@@ -72,17 +72,12 @@ def vixindex():
  send='https://api.telegram.org/bot' + "2019412223:AAHQls_geeAZPJoGIRxaIwxmpqhbVtCBCGU" + '/sendMessage?chat_id=' + '-1001528245619' + '&parse_mode=Markdown&text=' + value
  requests.get(send)
 #______________________________________________________________________________________________________________________#
+desired_time1 = '07:00'
+desired_time2 = '14:00'
 while(True):
- time.sleep(180)
- time.sleep(50400)
- putcall()
- vixindex()
- oil()
- #here ou can customize the time
- time.sleep(25200)
- putcall()
- vixindex()
- oil()
- #here you can customixe it again
- time.sleep(10800)
+  if strftime("%H:%M", gmtime()) == desired_time1 or strftime("%H:%M", gmtime()) == desired_time2:
+   putcall()
+   vixindex()
+   oil()
+  
 
